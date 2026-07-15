@@ -6,3 +6,7 @@ spring:
 
 server:
   port: 8081
+
+jwt:
+  secret: aVeryLongSecretKeyForDevOnlyChangeThisInProduction1234567890
+  expiration-ms: 900000
