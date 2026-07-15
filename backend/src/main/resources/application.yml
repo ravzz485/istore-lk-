@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: istore-api
+  mongodb:
+    uri: mongodb://localhost:27017/istore_db
+
+server:
+  port: 8081
