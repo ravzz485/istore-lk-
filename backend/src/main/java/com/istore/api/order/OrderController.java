@@ -1,0 +1,32 @@
+package com.istore.api.order;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/v1/orders")
+@RequiredArgsConstructor
+public class OrderController {
+
+    private final OrderService orderService;
+    private final OrderRepository orderRepository;
+
+    @PostMapping("/checkout")
+    public Order checkout(Authentication auth,
+                          @RequestParam(defaultValue = "DELIVERY") String fulfilmentMethod,
+                          @RequestParam(required = false) String deliveryAddress,
+                          @RequestParam(defaultValue = "COD") String paymentMethod) {
+        return orderService.checkout(auth.getName(), fulfilmentMethod, deliveryAddress, paymentMethod);
+    }
+
+    @GetMapping("/my")
+    public Page<Order> myOrders(Authentication auth,
+                                @RequestParam(defaultValue = "0") int page,
+                                @RequestParam(defaultValue = "10") int size) {
+        return orderRepository.findByCustomerIdOrderByCreatedAtDesc(
+                auth.getName(), PageRequest.of(page, size));
+    }
+}

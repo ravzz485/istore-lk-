@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   application:
     name: istore-api
   mongodb:
@@ -9,4 +9,4 @@ server:
 
 jwt:
   secret: aVeryLongSecretKeyForDevOnlyChangeThisInProduction1234567890
-  expiration-ms: 900000
+  expiration-ms: 86400000
