@@ -47,6 +47,13 @@
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
 
+		<!-- Swagger / OpenAPI docs -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
 		<!-- JWT (jjwt) -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>

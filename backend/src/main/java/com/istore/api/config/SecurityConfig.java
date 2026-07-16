@@ -37,6 +37,8 @@ public class SecurityConfig {
                     // Public endpoints — login නැතුව access
                     .requestMatchers("/api/v1/auth/**").permitAll()
                     .requestMatchers(HttpMethod.GET, "/api/v1/products/**").permitAll()
+                    // Swagger API documentation — public
+                    .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                     // අනිත් ඔක්කොමට token එකක් ඕන
                     .anyRequest().authenticated())
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
