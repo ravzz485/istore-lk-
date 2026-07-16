@@ -3,8 +3,12 @@ package com.istore.api.config;
 import com.istore.api.product.Product;
 import com.istore.api.product.ProductRepository;
 import com.istore.api.product.Variant;
+import com.istore.api.user.Role;
+import com.istore.api.user.User;
+import com.istore.api.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -17,10 +21,28 @@ import java.util.Map;
 public class DataSeeder implements CommandLineRunner {
 
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) {
 
+        // ── 1. Admin user seed (මුලින්ම — products වලින් independent!) ──
+        if (!userRepository.existsByEmail("admin@istore.lk")) {
+            userRepository.save(User.builder()
+                    .fullName("iStore Admin")
+                    .email("admin@istore.lk")
+                    .password(passwordEncoder.encode("Admin@123"))
+                    .phone("0770000000")
+                    .nic("000000000000")
+                    .role(Role.ADMIN)
+                    .suspended(false)
+                    .createdAt(Instant.now())
+                    .build());
+            System.out.println("✅ Seeded admin user: admin@istore.lk / Admin@123");
+        }
+
+        // ── 2. Products seed ──
         // දැනටමත් products තියෙනවා නම් — ආයෙත් දාන්නේ නෑ
         if (productRepository.count() > 0) return;
 

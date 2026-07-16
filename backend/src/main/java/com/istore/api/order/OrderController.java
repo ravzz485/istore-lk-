@@ -29,4 +29,20 @@ public class OrderController {
         return orderRepository.findByCustomerIdOrderByCreatedAtDesc(
                 auth.getName(), PageRequest.of(page, size));
     }
+// ── ADMIN / STAFF endpoints ──
+
+    @GetMapping
+    @org.springframework.security.access.prepost.PreAuthorize("hasAnyRole('STAFF','ADMIN')")
+    public Page<Order> allOrders(@RequestParam(defaultValue = "0") int page,
+                                 @RequestParam(defaultValue = "10") int size) {
+        return orderRepository.findAll(
+                PageRequest.of(page, size,
+                        org.springframework.data.domain.Sort.by("createdAt").descending()));
+    }
+
+    @PatchMapping("/{id}/status")
+    @org.springframework.security.access.prepost.PreAuthorize("hasAnyRole('STAFF','ADMIN')")
+    public Order updateStatus(@PathVariable String id, @RequestParam String status) {
+        return orderService.updateStatus(id, status);
+    }
 }

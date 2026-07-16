@@ -94,5 +94,40 @@ public class OrderService {
         String prefix = "#IS-" + Year.now().getValue() + "-";
         long next = orderRepository.countByOrderNoStartingWith(prefix) + 1;
         return prefix + String.format("%05d", next);
+
+    }
+    // Status transition rules — මොන status එකෙන් මොනවට යන්න පුළුවන්ද
+    private static final java.util.Map<String, java.util.List<String>> ALLOWED =
+            java.util.Map.of(
+                    "PENDING",    java.util.List.of("CONFIRMED", "CANCELLED"),
+                    "CONFIRMED",  java.util.List.of("PROCESSING", "CANCELLED"),
+                    "PROCESSING", java.util.List.of("SHIPPED", "READY_FOR_PICKUP"),
+                    "SHIPPED",    java.util.List.of("DELIVERED"),
+                    "READY_FOR_PICKUP", java.util.List.of("COLLECTED"),
+                    "DELIVERED",  java.util.List.of("COMPLETED"),
+                    "COLLECTED",  java.util.List.of("COMPLETED"));
+
+    public Order updateStatus(String orderId, String newStatus) {
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found: " + orderId));
+
+        String current = order.getStatus();
+
+        // 1. Transition එක allowed ද?
+        if (!ALLOWED.getOrDefault(current, java.util.List.of()).contains(newStatus)) {
+            throw new IllegalArgumentException(
+                    "Cannot change status from " + current + " to " + newStatus);
+        }
+
+        // 2. ⭐ Cancel වුනොත් — stock ආපහු දෙනවා!
+        if ("CANCELLED".equals(newStatus)) {
+            for (OrderItem item : order.getItems()) {
+                stockService.restoreStock(item.getSku(), item.getQty());
+            }
+        }
+
+        order.setStatus(newStatus);
+        return orderRepository.save(order);
     }
 }
