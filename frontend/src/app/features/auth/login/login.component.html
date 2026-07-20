@@ -1,0 +1,32 @@
+<div class="auth-page">
+  <div class="auth-card fade-up">
+    <h1> iStore <span>LK</span></h1>
+    <h2>Sign In</h2>
+    <p class="auth-sub">Welcome back! Sign in to continue.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="you@example.com" />
+      <p class="field-error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        Valid email is required
+      </p>
+
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="••••••••" />
+      <p class="field-error" *ngIf="form.controls.password.touched && form.controls.password.invalid">
+        Password is required
+      </p>
+
+      <p class="api-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <button class="btn btn-full" type="submit" [disabled]="loading">
+        {{ loading ? 'Signing in...' : 'Sign In' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      New to iStore? <a routerLink="/register">Create an account</a>
+    </p>
+  </div>
+</div>

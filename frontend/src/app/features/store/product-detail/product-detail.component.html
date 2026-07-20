@@ -1,0 +1,54 @@
+<div class="container detail" *ngIf="product && selected">
+
+  <!-- Left: image (variant එක අනුව මාරු වෙනවා!) -->
+  <div class="detail-img fade-in" [class.swap]="true">
+    <img *ngIf="selected.images.length" [src]="selected.images[0]" [alt]="product.name" />
+  </div>
+
+  <!-- Right: info -->
+  <div class="detail-info fade-up">
+    <p class="category">{{ product.category }}</p>
+    <h1>{{ product.name }}</h1>
+    <p class="desc">{{ product.description }}</p>
+
+    <p class="price">LKR {{ selected.price | number:'1.0-0' }}</p>
+
+    <!-- ⭐ Color picker -->
+    <p class="label">Colour — <b>{{ selected.colorName }}</b></p>
+    <div class="colors">
+      <button *ngFor="let v of uniqueColors"
+              class="color-swatch"
+              [class.active]="v.colorName === selected.colorName"
+              [style.background]="v.colorHex"
+              (click)="selectColor(v.colorName)"></button>
+    </div>
+
+    <!-- ⭐ Storage picker -->
+    <p class="label">Storage</p>
+    <div class="storages">
+      <button *ngFor="let s of storagesForColor"
+              class="storage-btn"
+              [class.active]="s === selected.storage"
+              (click)="selectStorage(s)">{{ s }}</button>
+    </div>
+
+    <!-- Stock -->
+    <p class="stock" [class.low]="selected.stock <= selected.lowStockThreshold">
+      {{ selected.stock > 0
+          ? (selected.stock <= selected.lowStockThreshold
+              ? 'Only ' + selected.stock + ' left!' : 'In Stock')
+          : 'Out of Stock' }}
+    </p>
+
+    <button class="btn btn-buy" [disabled]="selected.stock === 0">Add to Cart</button>
+
+    <!-- Specs -->
+    <div class="specs card">
+      <h3>Tech Specs</h3>
+      <div class="spec-row" *ngFor="let s of specEntries">
+        <span class="spec-key">{{ s[0] }}</span>
+        <span class="spec-val">{{ s[1] }}</span>
+      </div>
+    </div>
+  </div>
+</div>

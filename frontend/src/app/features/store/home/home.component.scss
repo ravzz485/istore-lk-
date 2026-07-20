@@ -1,0 +1,126 @@
+/* ═══ Hero — VIDEO on top, content below ═══ */
+.hero {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Full-width video — page එකේ උඩින්ම (or boxed banner!) */
+.hero-visual {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;            /* boxed වුනාම center වෙන්න */
+
+ video {
+    width: 100%;
+    display: block;
+    background: var(--bg);
+    /* object-fit + max-height දැන් HTML bindings වලින් — per-category! */
+  }
+
+  /* ⭐ Boxed mode — width දීපු categories වලට rounded banner style! */
+  &.boxed {
+    margin-top: 30px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Video එකේ යට කෙළවර dark bg එකට fade */
+.hero-fade {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent, var(--bg));
+  pointer-events: none;
+}
+
+/* Text — video එකට යටින් */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 30px 24px 20px;
+}
+
+.hero-eyebrow { color: var(--accent); font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+
+.hero-title {
+  font-size: 76px; font-weight: 800; letter-spacing: -3px;
+  animation: fadeUp 0.9s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+  color: #fff;
+}
+
+.pro-gradient {
+  background: linear-gradient(90deg, #ff8a00, #ff2d55, #0a84ff, #ff8a00);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 5s linear infinite;
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 0; }
+  100% { background-position: 300% 0; }
+}
+
+.hero-sub { color: var(--text-muted); font-size: 21px; margin: 12px 0 28px; }
+
+.hero-actions { display: flex; gap: 14px; justify-content: center; margin-bottom: 20px; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══ Products ═══ */
+.products-section {
+  padding: 60px 24px;
+  h2 { font-size: 30px; font-weight: 700; margin-bottom: 28px; }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+.product-card { overflow: hidden; cursor: pointer; }
+
+/* Francium-style LIGHT product panel on dark page */
+.product-img {
+  height: 230px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(160deg, #fafafa 0%, #ececf0 100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 18px;
+
+  img {
+    max-height: 190px;
+    object-fit: contain;
+    transition: transform 0.55s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+}
+.product-card:hover .product-img img {
+  transform: scale(1.09) translateY(-5px);
+}
+
+.product-info {
+  padding: 20px;
+  .product-category { color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  h3 { font-size: 19px; margin: 6px 0 10px; }
+  .product-price { color: var(--text-muted); font-size: 15px; margin: 12px 0 16px; }
+}
+
+.color-dots { display: flex; gap: 7px; }
+.dot { width: 15px; height: 15px; border-radius: 50%; border: 2px solid var(--border); }
+
+.btn-full { width: 100%; }
+.skeleton-card { height: 430px; }
+.error { color: var(--danger); padding: 30px 0; }
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 46px; }
+}

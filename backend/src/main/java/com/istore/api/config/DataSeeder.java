@@ -65,13 +65,15 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("256GB").condition("BRAND_NEW")
                                 .price(new BigDecimal("434900.00"))
                                 .stock(12).lowStockThreshold(3)
-                                .images(List.of()).build(),
+                                .images(List.of("https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-naturaltitanium?wid=800&hei=800&fmt=png-alpha"))
+                                .build(),
                         Variant.builder().sku("IP16P-512-BLU")
                                 .colorName("Blue Titanium").colorHex("#3f4a5a")
                                 .storage("512GB").condition("BRAND_NEW")
                                 .price(new BigDecimal("512900.00"))
                                 .stock(4).lowStockThreshold(3)
-                                .images(List.of()).build()))
+                                .images(List.of("https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-bluetitanium?wid=800&hei=800&fmt=png-alpha"))
+                                .build()))
                 .createdAt(Instant.now())
                 .build();
 
@@ -94,7 +96,8 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("256GB SSD").condition("BRAND_NEW")
                                 .price(new BigDecimal("389900.00"))
                                 .stock(7).lowStockThreshold(2)
-                                .images(List.of()).build()))
+                                .images(List.of("https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-midnight-select-202402?wid=800&hei=800&fmt=png-alpha"))
+                                .build()))
                 .createdAt(Instant.now())
                 .build();
 
@@ -116,11 +119,12 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("84900.00"))
                                 .stock(20).lowStockThreshold(5)
-                                .images(List.of()).build()))
+                                .images(List.of("https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/airpods-pro-2-hero-select-202409?wid=800&hei=800&fmt=png-alpha"))
+                                .build()))
                 .createdAt(Instant.now())
                 .build();
 
         productRepository.saveAll(List.of(iphone, macbook, airpods));
-        System.out.println("✅ Seeded " + productRepository.count() + " products!");
+        System.out.println("✅ Seeded " + productRepository.count() + " products with images!");
     }
 }

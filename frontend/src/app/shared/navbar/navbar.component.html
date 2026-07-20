@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a routerLink="/" class="logo"> iStore <span>LK</span></a>
+
+    <div class="nav-links">
+      <a routerLink="/" [class.active]="activeCategory === ''" (click)="selectCategory('')">All</a>
+      <a *ngFor="let cat of categories"
+         [class.active]="activeCategory === cat"
+         (click)="selectCategory(cat)">{{ cat }}</a>
+    </div>
+
+    <div class="nav-actions">
+      <ng-container *ngIf="!auth.isLoggedIn; else loggedIn">
+        <button class="btn-ghost btn-small" routerLink="/login">Sign In</button>
+      </ng-container>
+      <ng-template #loggedIn>
+        <span class="user-name">Hi, {{ auth.currentUser()?.fullName?.split(' ')?.[0] }}</span>
+        <button class="btn-ghost btn-small" (click)="logout()">Logout</button>
+      </ng-template>
+    </div>
+  </div>
+</nav>

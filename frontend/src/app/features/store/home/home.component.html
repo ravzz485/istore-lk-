@@ -1,0 +1,60 @@
+<!-- Hero — VIDEO on top, content below! -->
+<section class="hero">
+  <!-- 1️⃣ Video — full-width (or boxed banner for categories with width!) -->
+  <div class="hero-visual"
+       [style.max-width]="hero.width || '100%'"
+       [class.boxed]="!!hero.width">
+    <video [src]="hero.video"
+           [style.max-height]="hero.height || '82vh'"
+           [style.height]="hero.fit === 'cover' ? (hero.height || '82vh') : null"
+           [style.object-fit]="hero.fit || 'contain'"
+           autoplay muted loop playsinline
+           (error)="onVideoError($event)"></video>
+    <div class="hero-fade"></div>
+  </div>
+
+  <!-- 2️⃣ Text — video එකට යටින් -->
+  <div class="container hero-content fade-up">
+    <p class="hero-eyebrow">Genuine Apple Products · Sri Lanka</p>
+    <h1 class="hero-title">{{ hero.title }} <span class="pro-gradient">{{ hero.accent }}</span></h1>
+    <p class="hero-sub">{{ hero.sub }}</p>
+    <div class="hero-actions">
+      <button class="btn">Shop Now</button>
+      <button class="btn btn-ghost">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<!-- Product Grid -->
+<section class="container products-section">
+  <h2 class="fade-up">{{ activeCategory || 'Latest' }} Products</h2>
+
+  <div class="grid" *ngIf="loading">
+    <div class="skeleton skeleton-card" *ngFor="let s of [1,2,3]"></div>
+  </div>
+
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <div class="grid stagger" *ngIf="!loading && !error">
+    <div class="card product-card"
+         *ngFor="let p of products"
+         [routerLink]="['/products', p.slug]">
+      <div class="product-img">
+        <img *ngIf="p.variants[0]?.images?.length"
+             [src]="p.variants[0].images[0]"
+             [alt]="p.name"
+             loading="lazy" />
+      </div>
+      <div class="product-info">
+        <p class="product-category">{{ p.category }}</p>
+        <h3>{{ p.name }}</h3>
+        <div class="color-dots">
+          <span *ngFor="let v of p.variants"
+                class="dot" [style.background]="v.colorHex"></span>
+        </div>
+        <p class="product-price">From LKR {{ minPrice(p) | number:'1.0-0' }}</p>
+        <button class="btn btn-full">View</button>
+      </div>
+    </div>
+  </div>
+</section>

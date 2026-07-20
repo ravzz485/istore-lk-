@@ -1,0 +1,50 @@
+<div class="auth-page">
+  <div class="auth-card fade-up">
+    <h1> iStore <span>LK</span></h1>
+    <h2>Create Account</h2>
+    <p class="auth-sub">Join iStore LK — genuine Apple products.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <label>Full Name</label>
+      <input type="text" formControlName="fullName" placeholder="Ravindu Perera" />
+      <p class="field-error" *ngIf="form.controls.fullName.touched && form.controls.fullName.invalid">
+        Full name is required
+      </p>
+
+      <label>Email</label>
+      <input type="email" formControlName="email" placeholder="you@example.com" />
+      <p class="field-error" *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        Valid email is required
+      </p>
+
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Min 8 characters" />
+      <p class="field-error" *ngIf="form.controls.password.touched && form.controls.password.invalid">
+        Password must be at least 8 characters
+      </p>
+
+      <label>Phone</label>
+      <input type="tel" formControlName="phone" placeholder="0771234567" />
+      <p class="field-error" *ngIf="form.controls.phone.touched && form.controls.phone.invalid">
+        Phone is required
+      </p>
+
+      <label>NIC</label>
+      <input type="text" formControlName="nic" placeholder="200012345678" />
+      <p class="field-error" *ngIf="form.controls.nic.touched && form.controls.nic.invalid">
+        NIC is required
+      </p>
+
+      <p class="api-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <button class="btn btn-full" type="submit" [disabled]="loading">
+        {{ loading ? 'Creating account...' : 'Create Account' }}
+      </button>
+    </form>
+
+    <p class="auth-switch">
+      Already have an account? <a routerLink="/login">Sign In</a>
+    </p>
+  </div>
+</div>

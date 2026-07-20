@@ -1,0 +1,68 @@
+.detail {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  padding-top: 50px; padding-bottom: 80px;
+}
+
+.detail-img {
+  background: linear-gradient(160deg, #fafafa 0%, #ececf0 100%);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 480px; padding: 30px;
+  position: sticky; top: 90px; align-self: start;
+
+  img {
+    max-height: 420px; object-fit: contain;
+    animation: fadeIn 0.45s ease;   /* variant swap smooth! */
+  }
+}
+
+.detail-info {
+  .category { color: var(--accent); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+  h1 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin: 6px 0 12px; }
+  .desc { color: var(--text-muted); font-size: 16px; line-height: 1.6; margin-bottom: 20px; }
+  .price { font-size: 30px; font-weight: 700; margin-bottom: 26px; }
+}
+
+.label { font-size: 14px; color: var(--text-muted); margin: 18px 0 10px; }
+
+.colors { display: flex; gap: 12px; }
+.color-swatch {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--border);
+  transition: all 0.25s ease;
+  &:hover { transform: scale(1.12); }
+  &.active { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,113,227,0.35); }
+}
+
+.storages { display: flex; gap: 10px; flex-wrap: wrap; }
+.storage-btn {
+  padding: 11px 22px; border-radius: 12px;
+  background: transparent; color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 14px; font-weight: 600;
+  transition: all 0.25s ease;
+  &:hover { border-color: var(--text-muted); }
+  &.active { border-color: var(--accent); background: rgba(0,113,227,0.12); color: var(--accent-hover); }
+}
+
+.stock { margin: 20px 0 14px; font-weight: 600; color: var(--success);
+  &.low { color: #ff9f0a; } }
+
+.btn-buy { width: 100%; padding: 15px; font-size: 16px; }
+
+.specs {
+  margin-top: 34px; padding: 22px;
+  h3 { margin-bottom: 14px; font-size: 17px; }
+  .spec-row {
+    display: flex; justify-content: space-between; gap: 20px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    &:last-child { border-bottom: none; }
+    .spec-key { color: var(--text-muted); text-transform: capitalize; }
+    .spec-val { text-align: right; font-size: 14.5px; }
+  }
+}
+
+@media (max-width: 768px) {
+  .detail { grid-template-columns: 1fr; }
+  .detail-img { position: static; min-height: 320px; img { max-height: 280px; } }
+}
