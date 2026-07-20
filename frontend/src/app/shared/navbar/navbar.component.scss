@@ -29,11 +29,37 @@
   }
 }
 
-/* ⭐ Auth actions — Sign In / Hi + Logout */
+/* ⭐ Auth actions — Cart / Sign In / Hi + Logout */
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+}
+
+/* ⭐ Cart icon + live badge */
+.cart-link {
+  position: relative;
+  font-size: 19px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover { transform: scale(1.12); }
+
+  .cart-badge {
+    position: absolute;
+    top: -7px; right: -11px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 700;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
 }
 
 .user-name {

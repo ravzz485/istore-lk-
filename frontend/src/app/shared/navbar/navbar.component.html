@@ -10,6 +10,9 @@
     </div>
 
     <div class="nav-actions">
+      <a routerLink="/cart" class="cart-link" *ngIf="auth.isLoggedIn">
+        🛒 <span class="cart-badge" *ngIf="cartCount() > 0">{{ cartCount() }}</span>
+      </a>
       <ng-container *ngIf="!auth.isLoggedIn; else loggedIn">
         <button class="btn-ghost btn-small" routerLink="/login">Sign In</button>
       </ng-container>

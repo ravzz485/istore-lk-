@@ -1,0 +1,49 @@
+<div class="container cart-page">
+  <h1 class="fade-up">Your Cart 🛒</h1>
+
+  <div *ngIf="loading" class="skeleton" style="height:200px; margin-top:20px;"></div>
+
+  <!-- Empty state -->
+  <div class="empty fade-up" *ngIf="!loading && (!cart || cart.items.length === 0)">
+    <p class="empty-icon">🛒</p>
+    <h2>Your cart is empty</h2>
+    <p>Browse our genuine Apple products and add something you love!</p>
+    <button class="btn" routerLink="/">Shop Now</button>
+  </div>
+
+  <!-- Cart items -->
+  <div class="cart-layout" *ngIf="!loading && cart && cart.items.length > 0">
+    <div class="cart-items stagger">
+      <div class="card cart-item" *ngFor="let item of cart.items">
+        <div class="item-info">
+          <h3>{{ item.productName }}</h3>
+          <p class="sku">{{ item.sku }}</p>
+          <p class="qty">Qty: {{ item.qty }}</p>
+        </div>
+        <div class="item-right">
+          <p class="price">LKR {{ item.unitPrice * item.qty | number:'1.0-0' }}</p>
+          <button class="remove-btn" (click)="remove(item.sku)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="card summary fade-up">
+      <h3>Order Summary</h3>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span>LKR {{ total | number:'1.0-0' }}</span>
+      </div>
+      <div class="summary-row">
+        <span>Delivery</span>
+        <span>{{ total >= 50000 ? 'FREE' : 'Calculated at checkout' }}</span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>LKR {{ total | number:'1.0-0' }}</span>
+      </div>
+      <button class="btn btn-full">Checkout</button>
+      <p class="note">Free islandwide delivery on orders over LKR 50,000</p>
+    </div>
+  </div>
+</div>
