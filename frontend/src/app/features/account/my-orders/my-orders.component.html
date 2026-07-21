@@ -1,0 +1,39 @@
+<div class="container orders-page">
+  <h1 class="fade-up">My Orders</h1>
+
+  <div *ngIf="loading" class="skeleton" style="height:150px; margin-top:20px;"></div>
+
+  <div class="empty fade-up" *ngIf="!loading && orders.length === 0">
+    <p class="empty-icon">📦</p>
+    <h2>No orders yet</h2>
+    <p>Your order history will appear here once you place an order.</p>
+    <button class="btn" routerLink="/">Start Shopping</button>
+  </div>
+
+  <div class="orders-list stagger" *ngIf="!loading && orders.length > 0">
+    <div class="card order-card" *ngFor="let o of orders">
+      <div class="order-top">
+        <div>
+          <p class="order-no">{{ o.orderNo }}</p>
+          <p class="order-date">{{ o.createdAt | date:'medium' }}</p>
+        </div>
+        <span class="status-badge" [style.background]="statusColor(o.status) + '22'"
+              [style.color]="statusColor(o.status)">
+          {{ o.status }}
+        </span>
+      </div>
+
+      <div class="order-items">
+        <div class="order-item" *ngFor="let item of o.items">
+          <span>{{ item.productName }} × {{ item.qty }}</span>
+          <span>LKR {{ item.lineTotal | number:'1.0-0' }}</span>
+        </div>
+      </div>
+
+      <div class="order-bottom">
+        <span>{{ o.fulfilmentMethod }} · {{ o.paymentMethod }}</span>
+        <span class="order-total">LKR {{ o.total | number:'1.0-0' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

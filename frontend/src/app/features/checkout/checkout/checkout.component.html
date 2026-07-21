@@ -1,0 +1,95 @@
+<div class="container checkout-page">
+
+  <!-- 🎉 ORDER CONFIRMATION -->
+  <div class="confirmation fade-up" *ngIf="placedOrder">
+    <p class="confirm-icon">🎉</p>
+    <h1>Order Placed!</h1>
+    <p class="order-no">{{ placedOrder.orderNo }}</p>
+    <p class="confirm-sub">Thank you! Your order is <b>{{ placedOrder.status }}</b>.
+      We'll contact you to confirm.</p>
+    <div class="confirm-summary card">
+      <div class="summary-row" *ngFor="let item of placedOrder.items">
+        <span>{{ item.productName }} × {{ item.qty }}</span>
+        <span>LKR {{ item.lineTotal | number:'1.0-0' }}</span>
+      </div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span>LKR {{ placedOrder.total | number:'1.0-0' }}</span>
+      </div>
+    </div>
+    <button class="btn" routerLink="/">Continue Shopping</button>
+  </div>
+
+  <!-- CHECKOUT FORM -->
+  <div *ngIf="!placedOrder && !loading && cart">
+    <h1 class="fade-up">Checkout</h1>
+
+    <div class="checkout-layout">
+      <form [formGroup]="form" class="checkout-form fade-up">
+
+        <div class="card section">
+          <h3>1 · Fulfilment</h3>
+          <div class="option-row">
+            <label class="option" [class.selected]="form.value.fulfilmentMethod === 'DELIVERY'">
+              <input type="radio" formControlName="fulfilmentMethod" value="DELIVERY" />
+              🚚 Delivery
+            </label>
+            <label class="option" [class.selected]="form.value.fulfilmentMethod === 'PICKUP'">
+              <input type="radio" formControlName="fulfilmentMethod" value="PICKUP" />
+              🏬 Store Pickup
+            </label>
+          </div>
+
+          <div *ngIf="form.value.fulfilmentMethod === 'DELIVERY'">
+            <label class="field-label">Delivery Address</label>
+            <textarea formControlName="deliveryAddress" rows="3"
+                      placeholder="No 123, Galle Road, Colombo 04"></textarea>
+            <p class="field-error"
+               *ngIf="form.controls.deliveryAddress.touched && form.controls.deliveryAddress.invalid">
+              Delivery address is required
+            </p>
+          </div>
+        </div>
+
+        <div class="card section">
+          <h3>2 · Payment</h3>
+          <div class="option-row">
+            <label class="option" [class.selected]="form.value.paymentMethod === 'COD'">
+              <input type="radio" formControlName="paymentMethod" value="COD" />
+              💵 Cash on Delivery
+            </label>
+            <label class="option" [class.selected]="form.value.paymentMethod === 'BANK_TRANSFER'">
+              <input type="radio" formControlName="paymentMethod" value="BANK_TRANSFER" />
+              🏦 Bank Transfer
+            </label>
+          </div>
+          <p class="pay-note" *ngIf="form.value.paymentMethod === 'BANK_TRANSFER'">
+            Bank details will be sent with your order confirmation. Upload your slip after transfer.
+          </p>
+        </div>
+
+        <p class="api-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+      </form>
+
+      <!-- Summary -->
+      <div class="card summary fade-up">
+        <h3>Order Summary</h3>
+        <div class="summary-row" *ngFor="let item of cart.items">
+          <span>{{ item.productName }} × {{ item.qty }}</span>
+          <span>LKR {{ item.unitPrice * item.qty | number:'1.0-0' }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery</span>
+          <span>{{ total >= 50000 ? 'FREE' : 'TBD' }}</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span>LKR {{ total | number:'1.0-0' }}</span>
+        </div>
+        <button class="btn btn-full" [disabled]="placing" (click)="placeOrder()">
+          {{ placing ? 'Placing Order...' : 'Place Order' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

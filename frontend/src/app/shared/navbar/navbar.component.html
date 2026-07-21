@@ -17,6 +17,7 @@
         <button class="btn-ghost btn-small" routerLink="/login">Sign In</button>
       </ng-container>
       <ng-template #loggedIn>
+        <a routerLink="/my-orders" class="orders-link">Orders</a>
         <span class="user-name">Hi, {{ auth.currentUser()?.fullName?.split(' ')?.[0] }}</span>
         <button class="btn-ghost btn-small" (click)="logout()">Logout</button>
       </ng-template>

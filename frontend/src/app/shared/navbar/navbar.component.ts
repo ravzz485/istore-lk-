@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/auth.service';
+import { CartService } from '../../core/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -15,7 +16,12 @@ export class NavbarComponent {
   categories = ['iPhone', 'Mac', 'iPad', 'Watch', 'AirPods', 'Accessories'];
   activeCategory = '';
 
-  constructor(private router: Router, public auth: AuthService) {}
+  // ⭐ Cart item count — live signal (badge එකට!)
+  cartCount = this.cart.itemCount;
+
+  constructor(private router: Router,
+              public auth: AuthService,
+              private cart: CartService) {}
 
   selectCategory(cat: string) {
     this.activeCategory = cat;
