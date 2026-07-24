@@ -1,0 +1,65 @@
+<div class="container dashboard-page">
+  <h1 class="fade-up">Admin Dashboard</h1>
+
+  <div *ngIf="loading" class="skeleton" style="height:100px; margin-top:20px;"></div>
+
+  <p class="api-error" *ngIf="!loading && errorMsg">{{ errorMsg }}</p>
+
+  <div *ngIf="!loading && !errorMsg">
+
+    <!-- ⭐ KPI Cards -->
+    <div class="kpi-grid stagger" *ngIf="kpis">
+      <div class="card kpi-card">
+        <p class="kpi-label">Total Revenue</p>
+        <p class="kpi-value">LKR {{ kpis.totalRevenue | number:'1.0-0' }}</p>
+      </div>
+      <div class="card kpi-card">
+        <p class="kpi-label">Total Orders</p>
+        <p class="kpi-value">{{ kpis.totalOrders }}</p>
+      </div>
+      <div class="card kpi-card">
+        <p class="kpi-label">Pending Orders</p>
+        <p class="kpi-value accent-orange">{{ kpis.pendingOrders }}</p>
+      </div>
+      <div class="card kpi-card">
+        <p class="kpi-label">Customers</p>
+        <p class="kpi-value">{{ kpis.totalCustomers }}</p>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <!-- ⭐ Monthly Revenue Bar Chart (pure CSS!) -->
+      <div class="card chart-card fade-up">
+        <h3>Monthly Revenue</h3>
+        <div class="bar-chart" *ngIf="monthly.length > 0">
+          <div class="bar-col" *ngFor="let m of monthly">
+            <div class="bar-value">{{ (m['revenue'] / 1000) | number:'1.0-0' }}k</div>
+            <div class="bar" [style.height.%]="barHeight(m['revenue'])"></div>
+            <div class="bar-label">{{ monthName(m['_id']) }}</div>
+          </div>
+        </div>
+        <p class="no-data" *ngIf="monthly.length === 0">No revenue data yet</p>
+      </div>
+
+      <!-- ⭐ Category Sales List -->
+      <div class="card chart-card fade-up">
+        <h3>Sales by Category</h3>
+        <div class="category-list" *ngIf="categories.length > 0">
+          <div class="category-row" *ngFor="let c of categories; let i = index">
+            <div class="cat-top">
+              <span class="cat-dot" [style.background]="categoryColors[i % categoryColors.length]"></span>
+              <span class="cat-name">{{ c['_id'] }}</span>
+              <span class="cat-revenue">LKR {{ c['revenue'] | number:'1.0-0' }}</span>
+            </div>
+            <div class="cat-bar-track">
+              <div class="cat-bar-fill"
+                   [style.width.%]="(c['revenue'] / totalCategoryRevenue) * 100"
+                   [style.background]="categoryColors[i % categoryColors.length]"></div>
+            </div>
+          </div>
+        </div>
+        <p class="no-data" *ngIf="categories.length === 0">No sales data yet</p>
+      </div>
+    </div>
+  </div>
+</div>

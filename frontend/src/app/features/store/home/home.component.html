@@ -1,10 +1,11 @@
-<!-- Hero — VIDEO on top, content below! -->
-<section class="hero">
+<!-- Hero — video categories (normal) -->
+<section class="hero" *ngIf="!hero.noVideo">
   <!-- 1️⃣ Video — full-width (or boxed banner for categories with width!) -->
   <div class="hero-visual"
        [style.max-width]="hero.width || '100%'"
        [class.boxed]="!!hero.width">
     <video [src]="hero.video"
+           [class.rotated]="hero.rotate"
            [style.max-height]="hero.height || '82vh'"
            [style.height]="hero.fit === 'cover' ? (hero.height || '82vh') : null"
            [style.object-fit]="hero.fit || 'contain'"
@@ -25,9 +26,251 @@
   </div>
 </section>
 
+<!-- ⭐ Simple header — no-video categories (Accessories) -->
+<section class="container simple-header fade-up" *ngIf="hero.noVideo">
+  <p class="breadcrumb">Home / {{ hero.title }}</p>
+  <h1 class="page-title">{{ hero.title }}</h1>
+</section>
+
+<!-- ⭐ AirPods 3D Scroll Showcase — full 360° rotation! -->
+<section class="rotate-showcase" *ngIf="activeCategory === 'AirPods'" #rotateSection>
+  <div class="rotate-sticky">
+    <img src="airpods-rotate.png"
+         alt="AirPods Pro"
+         class="rotate-image"
+         [style.transform]="'perspective(1200px) rotateY(' + rotateAngle + 'deg) scale(' + rotateScale + ') scaleX(' + scaleX + ')'" />
+
+    <div class="rotate-text" [style.opacity]="textOpacity(0)">
+      <h3>A new multiport acoustic architecture</h3>
+      <p>with more precise airflow control — featuring an inward-facing microphone that points directly into the ear canal — delivers deeper bass, vivid vocal clarity, and a wider soundstage.</p>
+    </div>
+
+    <div class="rotate-text right" [style.opacity]="textOpacity(1)">
+      <h3>Adaptive Audio</h3>
+      <p>blends Active Noise Cancellation and Transparency dynamically, so you can focus when it matters and stay aware when you need to.</p>
+    </div>
+
+    <div class="rotate-text" [style.opacity]="textOpacity(2)">
+      <h3>Personalized Spatial Audio</h3>
+      <p>with dynamic head tracking places sound all around you, for a more immersive, theater-like experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "For your ears only" — Apple style full-screen overlay! -->
+<section class="feature-showcase" *ngIf="activeCategory === 'AirPods'">
+
+  <!-- Full-screen background image -->
+  <div class="feature-hero">
+    <img src="airpods-lifestyle.jpg" alt="AirPods lifestyle" class="feature-bg-image" />
+    <div class="feature-overlay-fade"></div>
+
+    <!-- Text overlaid on top of image -->
+    <div class="container feature-overlay-text fade-up">
+      <p class="feature-eyebrow">Personalized listening</p>
+      <h2 class="feature-title">For your ears only.</h2>
+      <p class="feature-desc">
+        AirPods Pro feature Adaptive EQ, which customizes a sound signature for your unique ear geometry and fit. And Personalized Volume uses machine learning to understand your listening patterns and adapt to your preferences over time.
+      </p>
+    </div>
+  </div>
+
+  <!-- Feature icons below -->
+  <div class="container feature-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🎵</div>
+      <h3>Adaptive EQ</h3>
+      <p>tunes music to your ears in real time based on the fit of your AirPods, adjusting frequencies for consistently detailed playback.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🎧</div>
+      <h3>Personalized Spatial Audio</h3>
+      <p>creates a custom profile for deeply immersive sound tailored to you.</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">👥</div>
+      <h3>Dynamic head tracking</h3>
+      <p>makes conversations feel like they're happening in the same room.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ Hearing Health style section — text left/right + image below -->
+<section class="hearing-showcase" *ngIf="activeCategory === 'AirPods'">
+  <div class="container hearing-content fade-up">
+    <p class="hearing-eyebrow">Hearing Health</p>
+    <div class="hearing-grid">
+      <h2 class="hearing-title">Check, aid, and help protect your hearing.</h2>
+      <p class="hearing-desc">
+        AirPods Pro bring improvements to the world's first end-to-end hearing health experience. Take a scientifically validated Hearing Test, use the Hearing Aid feature for improved voice clarity, and active Hearing Protection helps prevent exposure to loud environmental noise.
+      </p>
+    </div>
+  </div>
+  <img src="airpods-ear-closeup.jpg" alt="AirPods hearing health" class="hearing-image" />
+</section>
+
+<!-- ⭐ "Magic to your ears" — Experience, full-screen rounded card! -->
+<section class="experience-showcase" *ngIf="activeCategory === 'AirPods'">
+  <div class="container experience-content fade-up">
+    <p class="experience-eyebrow">Experience</p>
+    <h2 class="experience-title">Magic to your ears.</h2>
+    <p class="experience-desc">
+      AirPods Pro are packed with features that make even the simplest moments seem extraordinary — from Live Translation to superconvenient camera control, there's so much more to AirPods than meets the ear.
+    </p>
+  </div>
+
+  <div class="container experience-card-wrap">
+    <div class="experience-card">
+      <img src="airpods-experience.jpg" alt="AirPods Pro experience" class="experience-image" />
+      <div class="translation-overlay">
+        <span class="translate-word left">Hola</span>
+        <span class="translate-word right">Hello</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "All-day battery life" — battery stats section! -->
+<section class="battery-showcase" *ngIf="activeCategory === 'AirPods'">
+  <div class="container battery-content fade-up">
+    <p class="battery-eyebrow">All-day battery life</p>
+    <h2 class="battery-title">They're workin'<br>9 to 5.</h2>
+    <p class="battery-desc">
+      The MagSafe Charging Case is full of helpful features — like a built-in speaker and more powerful Precision Finding — that let you keep track of your AirPods Pro no matter where they are. And now just a single charge will take you all the way through the workday. Plus overtime.
+    </p>
+  </div>
+
+  <div class="container battery-image-wrap">
+    <img src="airpods-case.png" alt="AirPods MagSafe Case" class="battery-image" />
+  </div>
+
+  <div class="container battery-stats">
+    <div class="stat-item">
+      <p class="stat-label">Up to</p>
+      <p class="stat-value">8 hrs</p>
+      <p class="stat-desc">of battery life with Active Noise Cancellation on a single charge</p>
+      <div class="stat-line"></div>
+      <p class="stat-compare"><b>2 hours more</b> than AirPods Pro 2</p>
+    </div>
+    <div class="stat-item">
+      <p class="stat-label">Up to</p>
+      <p class="stat-value">10 hrs</p>
+      <p class="stat-desc">of battery life in Transparency with the Hearing Aid feature on a single charge</p>
+      <div class="stat-line"></div>
+      <p class="stat-compare"><b>4 hours more</b> than AirPods Pro 2</p>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "Listening. Remastered." — video hero + CTA! -->
+<section class="cta-showcase" *ngIf="activeCategory === 'AirPods'">
+  <div class="cta-video-wrap">
+    <video src="airpods-showcase.mp4"
+           class="cta-video"
+           autoplay muted loop playsinline></video>
+    <div class="cta-overlay-fade"></div>
+
+    <div class="cta-content">
+      <p class="cta-eyebrow">AirPods Max 2</p>
+      <h2 class="cta-title">Listening. Remastered.</h2>
+    </div>
+
+    <div class="cta-buy">
+      <span class="cta-price">LKR 84,900</span>
+      <button class="btn cta-buy-btn" routerLink="/products/airpods-pro-2">Buy</button>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "Why Apple is the best place to buy" — Watch category only -->
+<section class="incentive-showcase" *ngIf="activeCategory === 'Watch'">
+  <div class="container incentive-header fade-up">
+    <h2 class="incentive-title">Why iStore is the best<br>place to buy Apple Watch.</h2>
+  </div>
+
+  <div class="container incentive-grid">
+    <div class="incentive-card">
+      <p class="incentive-label">Financing</p>
+      <h3>Pay over time, interest-free.</h3>
+      <p class="incentive-desc">When you choose Koko/Mintpay installments at checkout.</p>
+      <img src="watch-financing.jpg" alt="Financing" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">iStore Trade In</p>
+      <h3>Save on a new Apple Watch with a trade-in.</h3>
+      <p class="incentive-desc">Get credit toward your next Apple Watch when you trade in an eligible device.</p>
+      <img src="watch-tradein.jpg" alt="Trade In" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">Student Offers</p>
+      <h3>Save on Apple Watch with student pricing.</h3>
+      <p class="incentive-desc">Students and educators can save through iStore LK.</p>
+      <img src="watch-education.jpg" alt="Education" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">Delivery and Pickup</p>
+      <h3>Get your order quickly and easily.</h3>
+      <p class="incentive-desc">Choose islandwide delivery, free delivery over LKR 50,000, or easy store pickup.</p>
+      <img src="watch-delivery.jpg" alt="Delivery" class="incentive-img" />
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "A real lifeline" — Safety features section -->
+<section class="safety-showcase" *ngIf="activeCategory === 'Watch'">
+  <div class="container safety-grid-top">
+    <div class="safety-text fade-up">
+      <p class="safety-eyebrow">Safety</p>
+      <h2 class="safety-title">A real<br>lifeline.</h2>
+      <p class="safety-desc">
+        Packed with innovative safety firsts, Apple Watch has your back. It's designed to summon help when you need it most — even if you can't reach your iPhone.
+      </p>
+    </div>
+
+    <!-- ⭐ Hover zoom/glow + pulsing SOS badge -->
+    <div class="safety-image-wrap ">
+      <img src="watch-safety.jpg" alt="Apple Watch Safety" class="safety-image" />
+      <span class="sos-badge">SOS</span>
+    </div>
+  </div>
+
+  <div class="container safety-features">
+    <div class="safety-item">
+      <div class="safety-icon">🆘</div>
+      <p><b>Emergency SOS.</b> Need urgent help? Just press and hold the side button to try to call emergency services and share your location.</p>
+    </div>
+    <div class="safety-item">
+      <div class="safety-icon">⚠️</div>
+      <p><b>Fall Detection.</b> If a hard fall is detected, it can automatically help connect you with emergency services and notify loved ones.</p>
+    </div>
+    <div class="safety-item">
+      <div class="safety-icon">🚗</div>
+      <p><b>Crash Detection.</b> If you've been in a severe car crash, it can automatically call emergency services, share your location, and notify emergency contacts.</p>
+    </div>
+    <div class="safety-item">
+      <div class="safety-icon">✅</div>
+      <p><b>Check In.</b> Your watch can automatically notify someone when you arrive at your destination, or during a run after dark.</p>
+    </div>
+    <div class="safety-item">
+      <div class="safety-icon">📍</div>
+      <p><b>Backtrack.</b> Automatically creates a path of where you've been when you're off the grid, with easy waypoints for landmarks.</p>
+    </div>
+    <div class="safety-item">
+      <div class="safety-icon">🏥</div>
+      <p><b>Medical ID.</b> In an emergency, first responders can quickly access critical medical information directly from your watch.</p>
+    </div>
+  </div>
+</section>
+
 <!-- Product Grid -->
 <section class="container products-section">
-  <h2 class="fade-up">{{ activeCategory || 'Latest' }} Products</h2>
+  <div class="section-bar">
+    <h2 class="fade-up">{{ activeCategory || 'Latest' }} Products</h2>
+    <span class="result-count" *ngIf="!loading">{{ products.length }} items</span>
+  </div>
 
   <div class="grid" *ngIf="loading">
     <div class="skeleton skeleton-card" *ngFor="let s of [1,2,3]"></div>
@@ -35,7 +278,7 @@
 
   <p class="error" *ngIf="error">{{ error }}</p>
 
-  <div class="grid stagger" *ngIf="!loading && !error">
+  <div class="grid stagger" *ngIf="!loading && !error && products.length > 0">
     <div class="card product-card"
          *ngFor="let p of products"
          [routerLink]="['/products', p.slug]">
@@ -56,5 +299,9 @@
         <button class="btn btn-full">View</button>
       </div>
     </div>
+  </div>
+
+  <div class="empty-products fade-up" *ngIf="!loading && !error && products.length === 0">
+    <p>No products found in this category yet.</p>
   </div>
 </section>

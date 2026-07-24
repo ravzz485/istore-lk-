@@ -6,6 +6,7 @@ import { RegisterComponent } from './features/auth/register/register.component';
 import { CartComponent } from './features/checkout/cart/cart.component';
 import { CheckoutComponent } from './features/checkout/checkout/checkout.component';
 import { MyOrdersComponent } from './features/account/my-orders/my-orders.component';
+import { DashboardComponent } from './features/admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'my-orders', component: MyOrdersComponent },
+  { path: 'admin/dashboard', component: DashboardComponent },
   { path: '**', redirectTo: '' }        // ⭐ wildcard හැමවෙලේම අන්තිමට!
 ];
