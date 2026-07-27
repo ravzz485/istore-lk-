@@ -41,7 +41,7 @@ public class DataSeeder implements CommandLineRunner {
             System.out.println("✅ Seeded admin user: admin@istore.lk / Admin@123");
         }
 
-        if (productRepository.count() > 0) return;
+        productRepository.deleteAll();
 
         Product iphone = Product.builder()
                 .name("iPhone 16 Pro")
@@ -94,6 +94,31 @@ public class DataSeeder implements CommandLineRunner {
                                 .price(new BigDecimal("389900.00"))
                                 .stock(7).lowStockThreshold(2)
                                 .images(List.of("https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/macbook-air-13-midnight-select-202402?wid=800&hei=800&fmt=png-alpha"))
+                                .build()))
+                .createdAt(Instant.now())
+                .build();
+
+        // ── ⭐ MacBook Pro — නව product! ──
+        Product macbookPro = Product.builder()
+                .name("MacBook Pro")
+                .slug("macbook-pro")
+                .category("Mac")
+                .modelNumber("A2991")
+                .releaseYear(2025)
+                .description("Mind-blowing. Head-turning. Supercharged by the M4 Pro chip for demanding workflows.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "Apple M4 Pro",
+                        "display", "14-inch Liquid Retina XDR",
+                        "ram", "18GB unified memory",
+                        "battery", "Up to 22 hours"))
+                .variants(List.of(
+                        Variant.builder().sku("MBP-M4-512-SPBLK")
+                                .colorName("Space Black").colorHex("#3b3b3d")
+                                .storage("512GB SSD").condition("BRAND_NEW")
+                                .price(new BigDecimal("389000.00"))
+                                .stock(9).lowStockThreshold(3)
+                                .images(List.of("http://localhost:4200/pro.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -217,6 +242,160 @@ public class DataSeeder implements CommandLineRunner {
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
+
+        // ── ⭐ iPad products ──
+        Product ipadPro = Product.builder()
+                .name("iPad Pro")
+                .slug("ipad-pro")
+                .category("iPad")
+                .modelNumber("A2925")
+                .releaseYear(2025)
+                .description("Thinpossible. The most advanced iPad Pro ever, powered by the M5 chip with Ultra Retina XDR display.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "Apple M5",
+                        "display", "13-inch Ultra Retina XDR (tandem OLED)",
+                        "camera", "12MP Wide | 10MP Ultra Wide",
+                        "battery", "Up to 10 hours"))
+                .variants(List.of(
+                        Variant.builder().sku("IPADPRO-256-SPBLK")
+                                .colorName("Space Black").colorHex("#3b3b3d")
+                                .storage("256GB").condition("BRAND_NEW")
+                                .price(new BigDecimal("349900.00"))
+                                .stock(10).lowStockThreshold(3)
+                                .images(List.of("http://localhost:4200/ipad-pro.png"))
+                                .build()))
+                .createdAt(Instant.now())
+                .build();
+
+        Product ipadAir = Product.builder()
+                .name("iPad Air")
+                .slug("ipad-air")
+                .category("iPad")
+                .modelNumber("A2589")
+                .releaseYear(2025)
+                .description("Powerful. Colorful. Wonderful. iPad Air with the M3 chip.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "Apple M3",
+                        "display", "11-inch Liquid Retina",
+                        "camera", "12MP Wide",
+                        "battery", "Up to 10 hours"))
+                .variants(List.of(
+                        Variant.builder().sku("IPADAIR-128-BLU")
+                                .colorName("Blue").colorHex("#a8c5e0")
+                                .storage("128GB").condition("BRAND_NEW")
+                                .price(new BigDecimal("189900.00"))
+                                .stock(14).lowStockThreshold(4)
+                                .images(List.of("http://localhost:4200/ipad-air.png"))
+                                .build()))
+                .createdAt(Instant.now())
+                .build();
+
+        Product ipadMini = Product.builder()
+                .name("iPad Mini")
+                .slug("ipad-mini")
+                .category("iPad")
+                .modelNumber("A2567")
+                .releaseYear(2024)
+                .description("Mega power. Mini form. iPad mini with the A17 Pro chip.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "Apple A17 Pro",
+                        "display", "8.3-inch Liquid Retina",
+                        "camera", "12MP Wide",
+                        "battery", "Up to 10 hours"))
+                .variants(List.of(
+                        Variant.builder().sku("IPADMINI-128-PUR")
+                                .colorName("Purple").colorHex("#d9c9e8")
+                                .storage("128GB").condition("BRAND_NEW")
+                                .price(new BigDecimal("154900.00"))
+                                .stock(16).lowStockThreshold(4)
+                                .images(List.of("http://localhost:4200/ipad-mini.png"))
+                                .build()))
+                .createdAt(Instant.now())
+                .build();
+
+        // ── ⭐ iPhone products — images දැන් .jpg (ඔයාගෙ files වලට match) ──
+        Product iphone17Pro = Product.builder()
+                .name("iPhone 17 Pro").slug("iphone-17-pro").category("iPhone")
+                .modelNumber("A3201").releaseYear(2025)
+                .description("The most powerful iPhone ever, with the A19 Pro chip and aluminium unibody design.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "A19 Pro",
+                        "display", "6.3-inch Super Retina XDR ProMotion",
+                        "camera", "48MP Pro Fusion system",
+                        "battery", "Up to 33 hours video playback"))
+                .variants(List.of(Variant.builder().sku("IP17PRO-256-BLU")
+                        .colorName("Deep Blue").colorHex("#2e3f5c").storage("256GB").condition("BRAND_NEW")
+                        .price(new BigDecimal("459900.00")).stock(12).lowStockThreshold(3)
+                        .images(List.of("http://localhost:4200/iphone-17-pro.jpg")).build()))
+                .createdAt(Instant.now()).build();
+
+        Product iphone17 = Product.builder()
+                .name("iPhone 17").slug("iphone-17").category("iPhone")
+                .modelNumber("A3202").releaseYear(2025)
+                .description("A total powerhouse, with the A19 chip and a stunning Super Retina XDR display.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "A19",
+                        "display", "6.1-inch Super Retina XDR",
+                        "camera", "Dual 48MP camera system",
+                        "battery", "Up to 30 hours video playback"))
+                .variants(List.of(Variant.builder().sku("IP17-128-BLK")
+                        .colorName("Black").colorHex("#1d1d1f").storage("128GB").condition("BRAND_NEW")
+                        .price(new BigDecimal("329900.00")).stock(15).lowStockThreshold(4)
+                        .images(List.of("http://localhost:4200/iphone-17.jpg")).build()))
+                .createdAt(Instant.now()).build();
+
+        Product iphone17Air = Product.builder()
+                .name("iPhone 17 Air").slug("iphone-17-air").category("iPhone")
+                .modelNumber("A3203").releaseYear(2025)
+                .description("Impossibly thin. Remarkably light. The most portable iPhone yet.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "A19",
+                        "display", "6.6-inch Super Retina XDR",
+                        "camera", "48MP Fusion camera",
+                        "design", "Ultra-thin titanium frame"))
+                .variants(List.of(Variant.builder().sku("IP17AIR-256-SLV")
+                        .colorName("Silver").colorHex("#e3e4e5").storage("256GB").condition("BRAND_NEW")
+                        .price(new BigDecimal("389900.00")).stock(10).lowStockThreshold(3)
+                        .images(List.of("http://localhost:4200/iphone-17-air.jpg")).build()))
+                .createdAt(Instant.now()).build();
+
+        Product iphone17e = Product.builder()
+                .name("iPhone 17e").slug("iphone-17e").category("iPhone")
+                .modelNumber("A3204").releaseYear(2025)
+                .description("All the essentials of iPhone 17, at a more affordable price.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "A19",
+                        "display", "6.1-inch Super Retina XDR",
+                        "camera", "48MP Fusion camera",
+                        "battery", "Up to 26 hours video playback"))
+                .variants(List.of(Variant.builder().sku("IP17E-128-WHT")
+                        .colorName("White").colorHex("#f0f0f0").storage("128GB").condition("BRAND_NEW")
+                        .price(new BigDecimal("249900.00")).stock(18).lowStockThreshold(5)
+                        .images(List.of("http://localhost:4200/iphone-17e.jpg")).build()))
+                .createdAt(Instant.now()).build();
+
+        Product iphone16 = Product.builder()
+                .name("iPhone 16").slug("iphone-16").category("iPhone")
+                .modelNumber("A3081").releaseYear(2024)
+                .description("Built for Apple Intelligence. Powered by the A18 chip with Camera Control.")
+                .status("ACTIVE")
+                .specs(Map.of(
+                        "chip", "A18",
+                        "display", "6.1-inch Super Retina XDR",
+                        "camera", "48MP Fusion camera",
+                        "battery", "Up to 22 hours video playback"))
+                .variants(List.of(Variant.builder().sku("IP16-128-TEAL")
+                        .colorName("Teal").colorHex("#a3c9c7").storage("128GB").condition("BRAND_NEW")
+                        .price(new BigDecimal("279900.00")).stock(20).lowStockThreshold(5)
+                        .images(List.of("http://localhost:4200/iphone-16.jpg")).build()))
+                .createdAt(Instant.now()).build();
 
         // ── Accessories products ──
 
@@ -380,10 +559,15 @@ public class DataSeeder implements CommandLineRunner {
                 .createdAt(Instant.now())
                 .build();
 
+        // ⭐⭐⭐ FIX: iPhone products 5ක් දැන් list එකට add කරලා තියෙනවා! ⭐⭐⭐
         productRepository.saveAll(List.of(
-                iphone, macbook, airpods, airpodsMax,
+                iphone, macbook, macbookPro, airpods, airpodsMax,
                 watchSeries11, watchSE3, watchUltra3,
-                charger, cable, magsafeCharger, magsafeDuo, batteryPack, magicMouse, magicKeyboard, pencilAdapter));
+                ipadPro, ipadAir, ipadMini,
+                iphone17Pro, iphone17, iphone17Air, iphone17e, iphone16,
+                charger, cable, magsafeCharger, magsafeDuo, batteryPack,
+                magicMouse, magicKeyboard, pencilAdapter));
+
         System.out.println("✅ Seeded " + productRepository.count() + " products with images!");
     }
 }

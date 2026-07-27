@@ -264,9 +264,540 @@
     </div>
   </div>
 </section>
+<!-- ⭐ "Take a closer look" — iPad gallery with arrows -->
+<section class="closer-showcase" *ngIf="activeCategory === 'iPad'">
+  <div class="container closer-header fade-up">
+    <h2 class="closer-title">Take a closer look.</h2>
+    <div class="closer-arrows">
+      <button class="closer-arrow" (click)="scrollCloser(-1)">‹</button>
+      <button class="closer-arrow" (click)="scrollCloser(1)">›</button>
+    </div>
+  </div>
 
+  <div class="closer-scroll" #closerScroll>
+    <img src="ipad-closer-1.jpg" alt="iPad view 1" class="closer-img" />
+    <img src="ipad-closer-2.jpg" alt="iPad view 2" class="closer-img" />
+    <img src="ipad-closer-3.jpg" alt="iPad view 3" class="closer-img" />
+    <img src="ipad-closer-4.jpg" alt="iPad view 4" class="closer-img" />
+    <img src="ipad-closer-5.jpg" alt="iPad view 5" class="closer-img" />
+  </div>
+
+  <p class="closer-caption">Space Black</p>
+</section>
+<!-- ⭐ "M5. Creator. Accelerator." — iPad Pro video + stats showcase -->
+<section class="m5-showcase" *ngIf="activeCategory === 'iPad'">
+
+  <!-- Video on top -->
+  <div class="m5-video-wrap">
+    <video src="large.mp4"
+           class="m5-video"
+           autoplay muted loop playsinline></video>
+  </div>
+
+  <!-- Text below video -->
+  <div class="container m5-content fade-up">
+    <h2 class="m5-title">M5.<br>Creator. Accelerator.</h2>
+    <p class="m5-desc">
+      The M5 chip pushes the limits of what's possible on iPad Pro to drive performance and efficiency like never before. A next-generation 10-core GPU with powerful new Neural Accelerators <b>dramatically speeds up AI tasks</b> — from large language model (LLM) token generation to generative imagery. And the multithreaded CPU performance and faster memory deliver breakthrough speed for your workflows.
+    </p>
+
+    <div class="m5-stats">
+      <div class="m5-stat">
+        <p class="m5-stat-label">Up to</p>
+        <p class="m5-stat-value">6.7x faster</p>
+        <p class="m5-stat-desc">pro rendering performance with ray tracing than iPad Pro with M1</p>
+      </div>
+      <div class="m5-stat">
+        <p class="m5-stat-label">Up to</p>
+        <p class="m5-stat-value">4x faster</p>
+        <p class="m5-stat-desc">AI image generation than iPad Pro with M1</p>
+      </div>
+    </div>
+
+    <button class="btn btn-ghost m5-btn">Learn how M5 powers performance +</button>
+  </div>
+</section>
+<!-- ⭐ "Ultra Retina XDR" — big heading + boxed video + stats -->
+<section class="xdr-showcase" *ngIf="activeCategory === 'iPad'">
+
+  <!-- Big heading -->
+  <div class="container xdr-title-wrap fade-up">
+    <h2 class="xdr-title">Ultra Retina XDR.<br>The world's most<br>advanced display.</h2>
+  </div>
+
+  <!-- Boxed video with floating pill overlay -->
+  <div class="container xdr-video-wrap">
+    <div class="xdr-video-frame">
+      <video src="small.mp4"
+             class="xdr-video"
+             autoplay muted loop playsinline></video>
+      <!-- <div class="xdr-pill">
+        <span>Immerse yourself in Ultra Retina XDR</span>
+        <span class="xdr-pill-icon">+</span>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- Caption -->
+  <p class="xdr-caption">Stream <i>Silo</i> on Apple TV with a subscription ↗</p>
+
+  <!-- Description -->
+  <div class="container xdr-desc-wrap">
+    <p class="xdr-desc">
+      The Ultra Retina XDR display is built with groundbreaking tandem OLED technology, which generates amazing brightness, precise contrast, and extreme dynamic range performance. Advanced technologies like ProMotion and True Tone give you a <b>jaw-dropping visual experience</b>. And you can use Reference Mode for color-accurate workflows.
+    </p>
+  </div>
+
+  <!-- Stats grid -->
+  <div class="container xdr-stats">
+    <div class="xdr-stat">
+      <p class="xdr-stat-value orange">1000 <span>nits</span></p>
+      <p class="xdr-stat-label">full-screen brightness</p>
+    </div>
+    <div class="xdr-stat">
+      <p class="xdr-stat-value orange">1600 <span>nits</span></p>
+      <p class="xdr-stat-label">peak HDR brightness</p>
+    </div>
+    <div class="xdr-stat">
+      <p class="xdr-stat-value blue">2,000,000:1</p>
+      <p class="xdr-stat-label">contrast ratio</p>
+    </div>
+    <div class="xdr-stat">
+      <p class="xdr-stat-value orange">True Tone</p>
+      <p class="xdr-stat-label">for comfortable viewing</p>
+    </div>
+    <div class="xdr-stat">
+      <p class="xdr-stat-value orange">ProMotion</p>
+      <p class="xdr-stat-label">adaptive 10–120Hz refresh rate</p>
+    </div>
+    <div class="xdr-stat">
+      <p class="xdr-stat-value blue">P3</p>
+      <p class="xdr-stat-label">wide color</p>
+    </div>
+  </div>
+
+  <!-- <div class="xdr-btn-wrap">
+    <button class="xdr-pill xdr-pill-btn">
+      <span>Immerse yourself in Ultra Retina XDR</span>
+      <span class="xdr-pill-icon">+</span>
+    </button>
+  </div> -->
+</section>
+<!-- ⭐ "Design. A powerhouse of portability." -->
+<section class="design-showcase" *ngIf="activeCategory === 'iPad'">
+
+  <!-- Big heading -->
+  <div class="container xdr-title-wrap fade-up">
+    <h2 class="xdr-title">Design.<br>A powerhouse of portability.</h2>
+  </div>
+
+  <!-- Description -->
+  <div class="container design-desc-wrap">
+    <p class="xdr-desc">
+      Despite an unbelievably thin and light design, iPad Pro delivers astonishing power and all-day battery life for game-changing productivity. And now with fast charging, get up to <b>50 percent charge in around 30 minutes.</b>
+    </p>
+  </div>
+
+  <!-- Boxed video with floating pill overlay -->
+  <div class="container xdr-video-wrap">
+    <div class="xdr-video-frame">
+      <video src="mini.webm"
+             class="xdr-video"
+             autoplay muted loop playsinline></video>
+      <!-- <div class="xdr-pill">
+        <span>Dive into materials and design</span>
+        <span class="xdr-pill-icon">+</span>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ "Why iStore is the best place to buy Mac" — Mac category only -->
+<section class="incentive-showcase" *ngIf="activeCategory === 'Mac'">
+  <div class="container incentive-header fade-up">
+    <h2 class="incentive-title">Why iStore is the best<br>place to buy Mac.</h2>
+  </div>
+
+  <div class="container incentive-grid">
+    <div class="incentive-card">
+      <p class="incentive-label">Ways to Buy</p>
+      <h3>Pay over time, interest-free.</h3>
+      <p class="incentive-desc">When you choose Koko/Mintpay installments at checkout.</p>
+      <img src="mac-financing.jpg" alt="Financing" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">Education</p>
+      <h3>Save on Mac with student pricing.</h3>
+      <p class="incentive-desc">Students and educators can save through iStore LK.</p>
+      <img src="mac-education.jpg" alt="Education" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">Personal Setup</p>
+      <h3>Meet your new Mac with Personal Setup.</h3>
+      <p class="incentive-desc">Get one-on-one help with data transfer, the latest features, and more.</p>
+      <img src="mac-setup.jpg" alt="Personal Setup" class="incentive-img" />
+    </div>
+
+    <div class="incentive-card">
+      <p class="incentive-label">Customize Your Mac</p>
+      <h3>Customize your Mac.</h3>
+      <p class="incentive-desc">Choose your chip, memory, storage, and even color.</p>
+      <img src="mac-customize.jpg" alt="Customize" class="incentive-img" />
+    </div>
+  </div>
+</section>
+<!-- ⭐ "Get to know Mac" — dark image cards with text overlay -->
+<section class="getknow-showcase" *ngIf="activeCategory === 'Mac'">
+  <div class="container getknow-header fade-up">
+    <h2 class="getknow-title">Get to know Mac.</h2>
+  </div>
+
+  <div class="getknow-scroll" #getknowScroll>
+    <div class="getknow-card">
+      <img src="mac-performance.jpg" alt="Performance" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Performance and Battery Life</p>
+        <h3>Go fast. Go far.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card">
+      <img src="mac-ai.jpg" alt="Built for AI" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Built for AI</p>
+        <h3>Smart. Secure. On device.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card light">
+      <img src="mac-macos.jpg" alt="macOS" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">macOS and Apple Intelligence</p>
+        <h3>Easy to use. Easy to love.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card light">
+      <img src="mac-iphone.jpg" alt="Mac + iPhone" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Mac + iPhone</p>
+        <h3>Together they work wonders.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container getknow-arrows">
+    <button class="closer-arrow" (click)="scrollGetknow(-1)">‹</button>
+    <button class="closer-arrow" (click)="scrollGetknow(1)">›</button>
+  </div>
+</section>
+<!-- ⭐ Mac CTA video section — "zzz" video -->
+<section class="cta-showcase" *ngIf="activeCategory === 'Mac'">
+  <div class="cta-video-wrap">
+    <video src="zzz.mp4"
+           class="cta-video"
+           autoplay muted loop playsinline></video>
+    <div class="cta-overlay-fade"></div>
+
+    <div class="cta-content">
+      <p class="cta-eyebrow">MacBook Pro</p>
+      <h2 class="cta-title">Mind-blowing. Head-turning.</h2>
+    </div>
+
+    <div class="cta-buy">
+      <span class="cta-price">LKR 389,900</span>
+      <button class="btn cta-buy-btn" routerLink="/products/macbook-air-m3">Buy</button>
+    </div>
+  </div>
+</section>
+<!-- ⭐ "Get to know iPhone" — dark image cards -->
+<section class="getknow-showcase" *ngIf="activeCategory === 'iPhone'">
+  <div class="container getknow-header fade-up">
+    <h2 class="getknow-title">Get to know iPhone.</h2>
+  </div>
+
+  <div class="getknow-scroll" #iphoneScroll>
+    <div class="getknow-card">
+      <img src="iphone-chip.jpg" alt="Chip" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Chip and Battery Life</p>
+        <h3>Fast that lasts.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card">
+      <img src="iphone-ios.jpg" alt="iOS" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">iOS and Apple Intelligence</p>
+        <h3>New look. Even more magic.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card">
+      <img src="iphone-environment.jpg" alt="Environment" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Environment</p>
+        <h3>Designed with the earth in mind.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card">
+      <img src="iphone-privacy.jpg" alt="Privacy" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Privacy</p>
+        <h3>Your data. Just where you want it.</h3>
+      </div>
+    </div>
+
+    <div class="getknow-card">
+      <img src="iphone-peace.jpg" alt="Peace of Mind" class="getknow-img" />
+      <div class="getknow-text">
+        <p class="getknow-eyebrow">Peace of Mind</p>
+        <h3>Helpful features. On and off the grid.</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="container getknow-arrows">
+    <button class="closer-arrow" (click)="scrollIphone(-1)">‹</button>
+    <button class="closer-arrow" (click)="scrollIphone(1)">›</button>
+  </div>
+</section>
+<!-- ⭐ iPhone "Take a closer look" — interactive color + features -->
+<section class="closer-pro" *ngIf="activeCategory === 'iPhone'">
+  <div class="container closer-pro-header fade-up">
+    <h2 class="closer-pro-title">Take a closer look.</h2>
+  </div>
+
+  <div class="closer-pro-body">
+    <!-- Left — controls -->
+    <div class="closer-controls">
+      <!-- Colors -->
+      <div class="closer-option" [class.active]="activeFeature === 'colors'">
+        <button class="closer-btn" (click)="selectFeature('colors')">
+          <span class="closer-dot" [style.background]="activeColorHex"></span>
+          Colors
+        </button>
+        <div class="closer-detail" *ngIf="activeFeature === 'colors'">
+          <p><b>Colors.</b> Choose from three bold finishes. iPhone 17 Pro shown in {{ activeColorName }}.</p>
+          <div class="color-swatches">
+            <span class="swatch" [class.on]="activeColor==='orange'" style="background:#e8663d" (click)="setColor('orange')"></span>
+            <span class="swatch" [class.on]="activeColor==='blue'" style="background:#2e3f5c" (click)="setColor('blue')"></span>
+            <span class="swatch" [class.on]="activeColor==='white'" style="background:#f0f0f0" (click)="setColor('white')"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ceramic Shield -->
+      <div class="closer-option" [class.active]="activeFeature === 'ceramic'">
+        <button class="closer-btn" (click)="selectFeature('ceramic')">
+          <span class="closer-plus">{{ activeFeature === 'ceramic' ? '−' : '+' }}</span>
+          Ceramic Shield
+        </button>
+        <div class="closer-detail" *ngIf="activeFeature === 'ceramic'">
+          <p><b>Ceramic Shield.</b> The toughest front and back glass in a smartphone, for superior durability and scratch resistance.</p>
+        </div>
+      </div>
+
+      <!-- Immersive pro display -->
+      <div class="closer-option" [class.active]="activeFeature === 'immersive'">
+        <button class="closer-btn" (click)="selectFeature('immersive')">
+          <span class="closer-plus">{{ activeFeature === 'immersive' ? '−' : '+' }}</span>
+          Immersive pro display
+        </button>
+        <div class="closer-detail" *ngIf="activeFeature === 'immersive'">
+          <p><b>Immersive pro display.</b> A stunning Super Retina XDR display with ProMotion up to 120Hz for silky-smooth scrolling.</p>
+        </div>
+      </div>
+
+      <!-- Camera Control -->
+      <div class="closer-option" [class.active]="activeFeature === 'camera'">
+        <button class="closer-btn" (click)="selectFeature('camera')">
+          <span class="closer-plus">{{ activeFeature === 'camera' ? '−' : '+' }}</span>
+          Camera Control
+        </button>
+        <div class="closer-detail" *ngIf="activeFeature === 'camera'">
+          <p><b>Camera Control.</b> A tactile button that gives you quick access to camera tools with a simple slide and press.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right — image (changes with color/feature) -->
+    <div class="closer-image-box">
+      <img [src]="closerImage" [alt]="activeFeature" class="closer-pro-img" />
+    </div>
+  </div>
+</section>
+<!-- ⭐ Cameras — "A big zoom forward." -->
+<section class="zoom-showcase" *ngIf="activeCategory === 'iPhone'">
+
+  <div class="zoom-header fade-up">
+    <p class="zoom-eyebrow">Cameras</p>
+    <h2 class="zoom-title">A big zoom forward.</h2>
+  </div>
+
+  <div class="zoom-body">
+    <!-- left — image bleeds off screen -->
+    <div class="zoom-image-wrap">
+      <img src="iphone-camera.jpg" alt="iPhone 17 Pro cameras" class="zoom-image" />
+    </div>
+
+    <!-- right — stats -->
+    <div class="zoom-stats">
+      <div class="zoom-stat">
+        <p class="zoom-stat-label">Up to</p>
+        <p class="zoom-stat-value">8x</p>
+        <p class="zoom-stat-desc">optical-quality zoom</p>
+      </div>
+      <div class="zoom-stat">
+        <p class="zoom-stat-label">All</p>
+        <p class="zoom-stat-value">48MP</p>
+        <p class="zoom-stat-desc">rear cameras</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="zoom-cta-wrap">
+    <button class="zoom-cta">
+      <span>Compare iPhone cameras</span>
+      <span class="zoom-cta-icon">+</span>
+    </button>
+  </div> -->
+</section>
+<!-- ⭐ "All in the family" — All the must-haves -->
+<section class="family-showcase" *ngIf="activeCategory === 'iPhone'">
+
+  <div class="container family-header fade-up">
+    <p class="family-eyebrow">All in the family</p>
+    <h2 class="family-title">All the must-haves.<br>All on iPhone.</h2>
+  </div>
+
+  <div class="family-image-wrap" #familyImg>
+    <img src="iphone-family.jpg" alt="iPhone family" class="family-image"
+         [style.transform]="'perspective(1400px) rotateX(' + familyTilt + 'deg) scale(' + familyScale + ')'" />
+  </div>
+
+  <div class="container family-desc-wrap">
+    <p class="family-desc" #familyText>
+      <span class="fw"
+            *ngFor="let w of familyWords; let i = index"
+            [class.b]="w.bold"
+            [style.opacity]="familyOpacities[i]">{{ w.t }}<sup *ngIf="w.sup">{{ w.sup }}</sup></span>
+    </p>
+  </div>
+</section>
+
+<!-- ⭐ Accessories — "Pro pairings." -->
+<section class="pairings-showcase" *ngIf="activeCategory === 'iPhone'">
+
+  <div class="container pairings-header fade-up">
+    <p class="pairings-eyebrow">Accessories</p>
+    <h2 class="pairings-title">Pro pairings.</h2>
+    <a class="pairings-link" routerLink="/" [queryParams]="{ category: 'Accessories' }">
+      Shop all iPhone accessories <span class="pairings-chevron">›</span>
+    </a>
+  </div>
+
+  <div class="container pairings-grid">
+    <div class="pairing-card">
+      <div class="pairing-img-box">
+        <img src="acc-techwoven.jpg" alt="TechWoven Case" class="pairing-img" />
+      </div>
+      <p class="pairing-desc">
+        <b>TechWoven Case.</b> Made from a custom technical woven fabric of multiple
+        colored yarns. The sides of the case are coated and textured for a better grip.
+        Available in five colors.
+      </p>
+    </div>
+
+    <div class="pairing-card">
+      <div class="pairing-img-box">
+        <img src="acc-crossbody.jpg" alt="Crossbody Strap" class="pairing-img" />
+      </div>
+      <p class="pairing-desc">
+        <b>Crossbody Strap.</b> Allows you to comfortably wear your iPhone hands-free.
+        Embedded flexible magnets with stainless steel sliding mechanisms make it
+        effortless to adjust for a perfect fit.
+      </p>
+    </div>
+
+    <div class="pairing-card">
+      <div class="pairing-img-box">
+        <img src="acc-silicone.jpg" alt="Silicone Case" class="pairing-img" />
+      </div>
+      <p class="pairing-desc">
+        <b>Silicone Case.</b> Six striking colors, now with two connection points that
+        allow secure attachment to the new Crossbody Strap.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ⭐ Promo tiles — category launcher (home page only) -->
+<section class="promo-showcase" *ngIf="!activeCategory">
+
+  <!-- iPhone — full width -->
+  <a class="promo-tile wide light"
+     routerLink="/" [queryParams]="{ category: 'iPhone' }">
+    <div class="promo-text">
+      <h2 class="promo-title">iPhone</h2>
+      <p class="promo-sub">Meet the family.</p>
+      <span class="promo-link">Shop iPhone ›</span>
+    </div>
+    <img src="promo-iphone.jpg" alt="iPhone" class="promo-img" />
+  </a>
+
+  <div class="promo-grid">
+    <!-- Mac — dark -->
+    <a class="promo-tile dark"
+       routerLink="/" [queryParams]="{ category: 'Mac' }">
+      <div class="promo-text">
+        <h2 class="promo-title">MacBook Pro</h2>
+        <p class="promo-sub">Mind-blowing. Head-turning.</p>
+        <span class="promo-link">Shop Mac ›</span>
+      </div>
+      <img src="promo-mac.jpg" alt="Mac" class="promo-img" />
+    </a>
+
+    <!-- iPad — dark -->
+    <a class="promo-tile dark"
+       routerLink="/" [queryParams]="{ category: 'iPad' }">
+      <div class="promo-text">
+        <h2 class="promo-title">iPad Pro</h2>
+        <p class="promo-sub">Thinpossible.</p>
+        <span class="promo-link">Shop iPad ›</span>
+      </div>
+      <img src="promo-ipad.jpg" alt="iPad" class="promo-img" />
+    </a>
+
+    <!-- Watch — light -->
+    <a class="promo-tile light"
+       routerLink="/" [queryParams]="{ category: 'Watch' }">
+      <div class="promo-text">
+        <h2 class="promo-title">Watch Series 11</h2>
+        <p class="promo-sub">The ultimate watch for a healthy life.</p>
+        <span class="promo-link">Shop Watch ›</span>
+      </div>
+      <img src="promo-watch.jpg" alt="Apple Watch" class="promo-img" />
+    </a>
+
+    <!-- AirPods — light -->
+    <a class="promo-tile light"
+       routerLink="/" [queryParams]="{ category: 'AirPods' }">
+      <div class="promo-text">
+        <h2 class="promo-title">AirPods Pro 3</h2>
+        <p class="promo-sub">The world's best in-ear Active Noise Cancellation.</p>
+        <span class="promo-link">Shop AirPods ›</span>
+      </div>
+      <img src="promo-airpods.jpg" alt="AirPods" class="promo-img" />
+    </a>
+  </div>
+</section>
 <!-- Product Grid -->
-<section class="container products-section">
+<!-- Product Grid — category pages only -->
+<section class="container products-section" *ngIf="activeCategory">
   <div class="section-bar">
     <h2 class="fade-up">{{ activeCategory || 'Latest' }} Products</h2>
     <span class="result-count" *ngIf="!loading">{{ products.length }} items</span>

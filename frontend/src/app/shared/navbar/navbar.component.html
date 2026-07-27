@@ -3,10 +3,15 @@
     <a routerLink="/" class="logo"> iStore <span>LK</span></a>
 
     <div class="nav-links">
-      <a routerLink="/" [class.active]="activeCategory === ''" (click)="selectCategory('')">All</a>
+      <!-- ⭐ queryParams හිස් නම් category එක clear වෙනවා -->
+      <a routerLink="/"
+         [queryParams]="{}"
+         [class.active]="activeCategory === ''">All</a>
+
       <a *ngFor="let cat of categories"
-         [class.active]="activeCategory === cat"
-         (click)="selectCategory(cat)">{{ cat }}</a>
+         routerLink="/"
+         [queryParams]="{ category: cat }"
+         [class.active]="activeCategory === cat">{{ cat }}</a>
     </div>
 
     <div class="nav-actions">
