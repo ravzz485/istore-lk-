@@ -1,42 +1,30 @@
-# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+# ── Java / Maven (backend) ──
+target/
+*.class
+*.war
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
 
-# Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
-
-# Node
-/node_modules
+# ── Node / Angular (frontend) ──
+node_modules/
+dist/
+.angular/cache/
 npm-debug.log
 yarn-error.log
 
-# IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# ── Secrets — කවදාවත් push කරන්න එපා! ──
+.env
+.env.local
+*.pem
 
-# Visual Studio Code
+# ── IDEs ──
+.idea/
 .vscode/*
 !.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+.settings/
+.classpath
+.project
 
-# Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
-
-# System files
+# ── System ──
 .DS_Store
 Thumbs.db

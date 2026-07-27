@@ -41,7 +41,9 @@ public class DataSeeder implements CommandLineRunner {
             System.out.println("✅ Seeded admin user: admin@istore.lk / Admin@123");
         }
 
-        productRepository.deleteAll();
+        // ⭐ Guard එක ආපහු දාලා. deleteAll() production එකේ තිබ්බොත් හැම restart
+        //    එකකදිම database එක මැකෙනවා — orders/users ඔක්කොම නැති වෙනවා!
+        if (productRepository.count() > 0) return;
 
         Product iphone = Product.builder()
                 .name("iPhone 16 Pro")
@@ -118,7 +120,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("512GB SSD").condition("BRAND_NEW")
                                 .price(new BigDecimal("389000.00"))
                                 .stock(9).lowStockThreshold(3)
-                                .images(List.of("http://localhost:4200/pro.png"))
+                                .images(List.of("/pro.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -165,7 +167,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("164900.00"))
                                 .stock(10).lowStockThreshold(3)
-                                .images(List.of("http://localhost:4200/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"))
+                                .images(List.of("/airpods_max_midnight__ddy8oa1y3y4i_large_2x.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -190,7 +192,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("45mm GPS").condition("BRAND_NEW")
                                 .price(new BigDecimal("139900.00"))
                                 .stock(15).lowStockThreshold(4)
-                                .images(List.of("http://localhost:4200/watch-series11.png"))
+                                .images(List.of("/watch-series11.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -214,7 +216,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("44mm GPS").condition("BRAND_NEW")
                                 .price(new BigDecimal("84900.00"))
                                 .stock(20).lowStockThreshold(5)
-                                .images(List.of("http://localhost:4200/watch-se3.png"))
+                                .images(List.of("/watch-se3.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -238,7 +240,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("49mm GPS + Cellular").condition("BRAND_NEW")
                                 .price(new BigDecimal("264900.00"))
                                 .stock(8).lowStockThreshold(3)
-                                .images(List.of("http://localhost:4200/watch-ultra3.png"))
+                                .images(List.of("/watch-ultra3.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -263,7 +265,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("256GB").condition("BRAND_NEW")
                                 .price(new BigDecimal("349900.00"))
                                 .stock(10).lowStockThreshold(3)
-                                .images(List.of("http://localhost:4200/ipad-pro.png"))
+                                .images(List.of("/ipad-pro.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -287,7 +289,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("128GB").condition("BRAND_NEW")
                                 .price(new BigDecimal("189900.00"))
                                 .stock(14).lowStockThreshold(4)
-                                .images(List.of("http://localhost:4200/ipad-air.png"))
+                                .images(List.of("/ipad-air.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -311,7 +313,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("128GB").condition("BRAND_NEW")
                                 .price(new BigDecimal("154900.00"))
                                 .stock(16).lowStockThreshold(4)
-                                .images(List.of("http://localhost:4200/ipad-mini.png"))
+                                .images(List.of("/ipad-mini.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -330,7 +332,7 @@ public class DataSeeder implements CommandLineRunner {
                 .variants(List.of(Variant.builder().sku("IP17PRO-256-BLU")
                         .colorName("Deep Blue").colorHex("#2e3f5c").storage("256GB").condition("BRAND_NEW")
                         .price(new BigDecimal("459900.00")).stock(12).lowStockThreshold(3)
-                        .images(List.of("http://localhost:4200/iphone-17-pro.jpg")).build()))
+                        .images(List.of("/iphone-17-pro.jpg")).build()))
                 .createdAt(Instant.now()).build();
 
         Product iphone17 = Product.builder()
@@ -346,7 +348,7 @@ public class DataSeeder implements CommandLineRunner {
                 .variants(List.of(Variant.builder().sku("IP17-128-BLK")
                         .colorName("Black").colorHex("#1d1d1f").storage("128GB").condition("BRAND_NEW")
                         .price(new BigDecimal("329900.00")).stock(15).lowStockThreshold(4)
-                        .images(List.of("http://localhost:4200/iphone-17.jpg")).build()))
+                        .images(List.of("/iphone-17.jpg")).build()))
                 .createdAt(Instant.now()).build();
 
         Product iphone17Air = Product.builder()
@@ -362,7 +364,7 @@ public class DataSeeder implements CommandLineRunner {
                 .variants(List.of(Variant.builder().sku("IP17AIR-256-SLV")
                         .colorName("Silver").colorHex("#e3e4e5").storage("256GB").condition("BRAND_NEW")
                         .price(new BigDecimal("389900.00")).stock(10).lowStockThreshold(3)
-                        .images(List.of("http://localhost:4200/iphone-17-air.jpg")).build()))
+                        .images(List.of("/iphone-17-air.jpg")).build()))
                 .createdAt(Instant.now()).build();
 
         Product iphone17e = Product.builder()
@@ -378,7 +380,7 @@ public class DataSeeder implements CommandLineRunner {
                 .variants(List.of(Variant.builder().sku("IP17E-128-WHT")
                         .colorName("White").colorHex("#f0f0f0").storage("128GB").condition("BRAND_NEW")
                         .price(new BigDecimal("249900.00")).stock(18).lowStockThreshold(5)
-                        .images(List.of("http://localhost:4200/iphone-17e.jpg")).build()))
+                        .images(List.of("/iphone-17e.jpg")).build()))
                 .createdAt(Instant.now()).build();
 
         Product iphone16 = Product.builder()
@@ -394,7 +396,7 @@ public class DataSeeder implements CommandLineRunner {
                 .variants(List.of(Variant.builder().sku("IP16-128-TEAL")
                         .colorName("Teal").colorHex("#a3c9c7").storage("128GB").condition("BRAND_NEW")
                         .price(new BigDecimal("279900.00")).stock(20).lowStockThreshold(5)
-                        .images(List.of("http://localhost:4200/iphone-16.jpg")).build()))
+                        .images(List.of("/iphone-16.jpg")).build()))
                 .createdAt(Instant.now()).build();
 
         // ── Accessories products ──
@@ -414,7 +416,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("8900.00"))
                                 .stock(50).lowStockThreshold(10)
-                                .images(List.of("http://localhost:4200/MGKN4.png"))
+                                .images(List.of("/MGKN4.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -434,7 +436,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("7400.00"))
                                 .stock(60).lowStockThreshold(10)
-                                .images(List.of("http://localhost:4200/MDF14.png"))
+                                .images(List.of("/MDF14.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -454,7 +456,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("12900.00"))
                                 .stock(30).lowStockThreshold(8)
-                                .images(List.of("http://localhost:4200/MT0H3.png"))
+                                .images(List.of("/MT0H3.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -474,7 +476,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("24900.00"))
                                 .stock(20).lowStockThreshold(5)
-                                .images(List.of("http://localhost:4200/HSKT2.png"))
+                                .images(List.of("/HSKT2.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -494,7 +496,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("17900.00"))
                                 .stock(25).lowStockThreshold(6)
-                                .images(List.of("http://localhost:4200/HSK72_AV1.png"))
+                                .images(List.of("/HSK72_AV1.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -514,7 +516,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("22900.00"))
                                 .stock(18).lowStockThreshold(5)
-                                .images(List.of("http://localhost:4200/MXK63.png"))
+                                .images(List.of("/MXK63.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -534,7 +536,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("29900.00"))
                                 .stock(15).lowStockThreshold(4)
-                                .images(List.of("http://localhost:4200/MXK83.png"))
+                                .images(List.of("/MXK83.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
@@ -554,7 +556,7 @@ public class DataSeeder implements CommandLineRunner {
                                 .storage("N/A").condition("BRAND_NEW")
                                 .price(new BigDecimal("4900.00"))
                                 .stock(35).lowStockThreshold(8)
-                                .images(List.of("http://localhost:4200/MUF82.png"))
+                                .images(List.of("/MUF82.png"))
                                 .build()))
                 .createdAt(Instant.now())
                 .build();
